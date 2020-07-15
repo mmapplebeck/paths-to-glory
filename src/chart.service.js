@@ -10,7 +10,7 @@ export function getPaths(nodeName) {
     case 'Visit List':
         return [
           ['From', 'To', 'Weight', ],
-          ['Demographics', 'Visit List', 5],
+          ['Visit List', 'Demographics', 5],
         ]
     case 'Summary':
         return [
