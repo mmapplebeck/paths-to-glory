@@ -1,62 +1,47 @@
-import React, {useState} from 'react';
-import Chart from "react-google-charts";
+import React, {useState, useEffect} from 'react';
 
-import {getPaths, getResults} from './chart.service'
+import AppService from './app.service'
+import './App.css'
+import Search from './Search'
+import Sankey from './Sankey'
+
+const colors = [
+  '#5051DB',
+  '#05bfe0',
+  '#1463b0',
+  '#33d1bf',
+  '#0a7387',
+  '#33f5f5',
+]
 
 function App() {
-  const [data, setData] = useState(getPaths('Demographics'))
-  const [query, setQuery] = useState('')
-  const [results, setResults] = useState([])
+  const [nodeName, setNodeName] = useState('Visit List')
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setIsLoading(true)
+    AppService
+      .getDataForNode(nodeName)
+      .then(response => setData(response))
+      .catch((message => setError(message)))
+      .finally(() => setIsLoading(false))
+  }, [nodeName])
+
   return (
     <div className="App">
-      Search
-      <input type="text" value={query} onChange={e => {
-        setQuery(e.target.value)
-        setResults(getResults(e.target.value))
-      }} />
-      {results.length > 0 && (
-        <div>
-          Results
-          {results.map(result => (
-            <div>
-              <button key={result} onClick={() => {
-                setData(getPaths(result))
-                setResults([])
-                setQuery('')
-              }}>{result}</button>
-            </div>
-          ))}
-        </div>
+      {data && (
+        <>
+          <Sankey data={data} setNodeName={setNodeName} />
+        </>
       )}
-      
-      <Chart
-        width={600}
-        height={'300px'}
-        chartType="Sankey"
-        loader={<div>Loading Chart</div>}
-        data={data}
-        options={{
-          sankey: {
-            node: {
-              interactivity: true
-            }
-          }
-        }}
-        chartEvents={[
-          {
-            eventName: 'select',
-            callback: ({ chartWrapper }) => {
-              const chart = chartWrapper.getChart()
-              const selection = chart.getSelection()
-              if (selection.length === 1) {
-                const [selectedItem] = selection
-                const {name} = selectedItem
-                setData(getPaths(name))
-              }
-            },
-          }
-        ]}
-      />
+      {error && (
+        <div>There was an error.</div>
+      )}
+      {isLoading && (
+        <div>Loading...</div>
+      )}
     </div>
   );
 }
