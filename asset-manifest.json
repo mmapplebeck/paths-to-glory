@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/paths-to-glory/static/css/main.82793ca6.chunk.css",
-    "main.js": "/paths-to-glory/static/js/main.d509778d.chunk.js",
-    "main.js.map": "/paths-to-glory/static/js/main.d509778d.chunk.js.map",
+    "main.js": "/paths-to-glory/static/js/main.a8fdf508.chunk.js",
+    "main.js.map": "/paths-to-glory/static/js/main.a8fdf508.chunk.js.map",
     "runtime-main.js": "/paths-to-glory/static/js/runtime-main.41c0f666.js",
     "runtime-main.js.map": "/paths-to-glory/static/js/runtime-main.41c0f666.js.map",
     "static/js/2.f045094a.chunk.js": "/paths-to-glory/static/js/2.f045094a.chunk.js",
     "static/js/2.f045094a.chunk.js.map": "/paths-to-glory/static/js/2.f045094a.chunk.js.map",
     "index.html": "/paths-to-glory/index.html",
-    "precache-manifest.c65399a3cd9475485a1e498ac8db5401.js": "/paths-to-glory/precache-manifest.c65399a3cd9475485a1e498ac8db5401.js",
+    "precache-manifest.b8b151f1333d1ebb4ad32e5f8d172358.js": "/paths-to-glory/precache-manifest.b8b151f1333d1ebb4ad32e5f8d172358.js",
     "service-worker.js": "/paths-to-glory/service-worker.js",
     "static/css/main.82793ca6.chunk.css.map": "/paths-to-glory/static/css/main.82793ca6.chunk.css.map",
     "static/js/2.f045094a.chunk.js.LICENSE.txt": "/paths-to-glory/static/js/2.f045094a.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.41c0f666.js",
     "static/js/2.f045094a.chunk.js",
     "static/css/main.82793ca6.chunk.css",
-    "static/js/main.d509778d.chunk.js"
+    "static/js/main.a8fdf508.chunk.js"
   ]
 }
