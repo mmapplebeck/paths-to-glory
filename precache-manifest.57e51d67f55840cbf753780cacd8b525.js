@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1b2bf093520ad36d64ac48c40c10507f",
+    "revision": "c6a34fbf23c2c648df99262dfb50d351",
     "url": "/paths-to-glory/index.html"
   },
   {
-    "revision": "6b4ad63aee96fb3dd7e7",
+    "revision": "b60e8dc16bd4963ad163",
     "url": "/paths-to-glory/static/css/main.e9b58468.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/paths-to-glory/static/js/2.ffdcffda.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6b4ad63aee96fb3dd7e7",
-    "url": "/paths-to-glory/static/js/main.e738b7f6.chunk.js"
+    "revision": "b60e8dc16bd4963ad163",
+    "url": "/paths-to-glory/static/js/main.2c249fac.chunk.js"
   },
   {
     "revision": "3fde74d9e272454d9ed9",
