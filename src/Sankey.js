@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
 function Sankey({data, nodeName, setNodeName}) {
   const theme = useTheme();
   const [isHovering, setIsHovering] = useState(false)
+  const [isChartReady, setIsChartReady] = useState(false)
   const classes = useStyles()
 
   return(
@@ -72,13 +73,17 @@ function Sankey({data, nodeName, setNodeName}) {
           {
             eventName: "ready",
             callback: ({ chartWrapper, google }) => {
+              if (isChartReady) {
+                return
+              }
+              setIsChartReady(true)
               const chart = chartWrapper.getChart();
               google.visualization.events.addListener(
                 chart,
                 "onmouseover",
                 e => {
-                  const {name} = e
-                  if (name && name !== nodeName) {
+                  const {name, row} = e
+                  if (name && row !== 1) {
                     setIsHovering(true)
                   }
                 }

@@ -4,7 +4,7 @@ const baseUrl = 'https://10.110.101.254/nodes'
 
 const cycleSuffix = ' '
 
-function stripCycleSuffix(nodeName) {
+export function stripCycleSuffix(nodeName) {
   return nodeName[nodeName.length - 1] === cycleSuffix ? nodeName.slice(0, nodeName.length - 1) : nodeName
 }
 

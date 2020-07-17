@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-import AppService from './app.service'
+import AppService, {stripCycleSuffix} from './app.service'
 import './App.css'
 import Sankey from './Sankey'
 import Header from './Header'
@@ -86,13 +86,17 @@ function App() {
       })
   }, [nodeName])
 
+  const handleSetNodeName = nodeName => {
+    setNodeName(stripCycleSuffix(nodeName))
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <Header setNodeName={setNodeName} />
+      <Header setNodeName={handleSetNodeName} />
       <StyledMain>
         {data && !error && (
           <>
-            <Sankey data={data} nodeName={nodeName} setNodeName={setNodeName} />
+            <Sankey data={data} nodeName={nodeName} setNodeName={handleSetNodeName} />
           </>
         )}
         {error && (
