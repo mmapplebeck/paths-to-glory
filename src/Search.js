@@ -1,78 +1,93 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles, fade } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 
-import AppService from './app.service'
+import AppService from './app.service';
 
-const StyledSearch = styled.div`
-  position: relative;
-`
-
-const StyledInput = styled.input`
-  width: 100%;
-  height: 3rem;
-  box-shadow: none;
-  border: 1px solid #758299;
-  margin-bottom: 1rem;
-  border-radius: 3px;
-  font-size: 1rem;
-  padding: 0.5rem;
-
-  ::placeholder {
-    color: #758299;
-  }
-`
-
-const StyledResults = styled.div`
-  position: absolute;
-  top: calc(3rem + 2px);
-  left: 0;
-  width: 100%;
-  padding: 0.5rem 0;
-  background-color: white;
-  z-index: 1000;
-  border: 1px solid #758299;
-  border-radius: 3px;
-`
-
-const StyledSearchResult = styled.button`
-  display: block;
-  width: 100%;
-  height: 3rem;
-  font-weight: bold;
-  padding: 1rem;
-  margin: 0;
-  border: 0;
-  font-size: 1rem;
-  text-align: left;
-
-  &:hover {
-    background-color: #f2f2f5;
-    cursor: pointer;
-  }
-`
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      color: 'inherit',
+      marginLeft: '1.5rem',
+      backgroundColor: fade('#fff', 0.15),
+      '&:hover': {
+        backgroundColor: fade('#fff', 0.25),
+      },
+      '& fieldset': {
+        border: 0,
+      },
+    },
+  },
+})(TextField);
 
 function Search({setNodeName}) {
-  const [query, setQuery] = useState('')
-  const [results, setResults] = useState([])
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const loading = options.length === 0;
+
+  React.useEffect(() => {
+    let active = true;
+
+    if (!loading) {
+      return undefined;
+    }
+
+    (async () => {
+      const results = await AppService.getResults();
+
+      if (results && active) {
+        setOptions(results);
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [loading]);
+
   return (
-    <StyledSearch>
-      <StyledInput type="text" value={query} placeholder="Find a node" onChange={e => {
-        setQuery(e.target.value)
-        setResults(AppService.getResults(e.target.value))
-      }} />
-      
-      {results.length > 0 && (
-        <StyledResults>
-          {results.map(result => (
-            <StyledSearchResult key={result} onClick={() => {
-              setNodeName(result)
-              setResults([])
-              setQuery('')
-            }}>{result}</StyledSearchResult>
-          ))}
-        </StyledResults>
+    <Autocomplete
+      id="asynchronous-demo"
+      style={{ width: 300 }}
+      open={open}
+      onOpen={() => {
+        setOpen(true);
+      }}
+      onClose={() => {
+        setOpen(false);
+      }}
+      options={options}
+      loading={loading}
+      disableClearable
+      blurOnSelect
+      clearOnBlur
+      freeSolo
+      value=""
+      inputValue=""
+      size="small"
+      onChange={(event, selectedNodeName) => {
+        setNodeName(selectedNodeName)
+      }}
+      renderInput={(params) => (
+        <CssTextField
+          {...params}
+          placeholder="Find a node…"
+          variant="outlined"
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? <CircularProgress color="inherit" size={20} /> : <SearchIcon />}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+        />
       )}
-    </StyledSearch>
+    />
   );
 }
 

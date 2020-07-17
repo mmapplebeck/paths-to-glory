@@ -1,29 +1,26 @@
 import React from 'react';
 import Chart from "react-google-charts";
-
-const colors = [
-  '#5051DB',
-  '#05bfe0',
-  '#1463b0',
-  '#33d1bf',
-  '#0a7387',
-  '#33f5f5',
-]
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {useTheme } from '@material-ui/core/styles';
 
 function Sankey({data, setNodeName}) {
+  const theme = useTheme();
+
   return(
     <Chart
       width={'100%'}
       height={'100%'}
       chartType="Sankey"
-      loader={<div>Loading Chart</div>}
+      loader={(
+        <CircularProgress color="primary" size={100} />
+      )}
       data={data}
       options={{
         sankey: {
           node: {
             width: 100,
             interactivity: true,
-            colors,
+            colors: theme.palette.colors,
             nodePadding: 16,
             label: {
               fontSize: 16,
@@ -31,7 +28,7 @@ function Sankey({data, setNodeName}) {
             }
           },
           link: {
-            colors,
+            colors: theme.palette.colors,
             colorMode: 'gradient',
             fillOpacity: 0.9,
           }
