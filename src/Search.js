@@ -35,13 +35,15 @@ function Search({setNodeName}) {
       return undefined;
     }
 
-    (async () => {
-      const results = await AppService.getResults();
-
-      if (results && active) {
-        setOptions(results);
-      }
-    })();
+    AppService.getResults()
+      .then(results => {
+        if (active) {
+          setOptions(results)
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     return () => {
       active = false;

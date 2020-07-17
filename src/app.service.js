@@ -18,14 +18,11 @@ class AppService {
     return superagent
       .get(`${baseUrl}/${nodeName}/paths`)
       .then(res => JSON.parse(res.text))
-      .catch(err => {
-        console.log(err)
-      })
   }
 
   static transformPaths(paths) {
     if (paths.previous.nodes.length === 0 && paths.next.nodes.length === 0) {
-      throw new Error('No paths found for this node.')
+      throw new Error('No paths found.')
     }
     const transformed = [
       ['From', 'To', 'Count']
@@ -50,9 +47,6 @@ class AppService {
     return superagent
       .get(`${baseUrl}/list?limit=1000`)
       .then(res => JSON.parse(res.text).nodeIds)
-      .catch(err => {
-        console.log(err)
-      })
   }
 }
 

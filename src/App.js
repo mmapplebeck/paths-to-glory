@@ -54,6 +54,8 @@ const StyledError = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 50%;
+  text-align: center;
 `
 
 const StyledErrorImage = styled.img`
@@ -76,6 +78,7 @@ function App() {
         setError(null)
       })
       .catch(err => {
+        console.log(error)
         setError(err.message)
       })
       .finally(() => {
@@ -89,7 +92,7 @@ function App() {
       <StyledMain>
         {data && !error && (
           <>
-            <Sankey data={data} setNodeName={setNodeName} />
+            <Sankey data={data} nodeName={nodeName} setNodeName={setNodeName} />
           </>
         )}
         {error && (
