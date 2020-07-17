@@ -66,7 +66,6 @@ function Search({setNodeName}) {
       clearOnBlur
       freeSolo
       value=""
-      inputValue=""
       size="small"
       onChange={(event, selectedNodeName) => {
         setNodeName(selectedNodeName)
