@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c6a34fbf23c2c648df99262dfb50d351",
+    "revision": "ac0464315b70a6e683cb1622595cf0b9",
     "url": "/paths-to-glory/index.html"
   },
   {
-    "revision": "b60e8dc16bd4963ad163",
+    "revision": "d1f258fe1280c28a0f08",
     "url": "/paths-to-glory/static/css/main.e9b58468.chunk.css"
   },
   {
-    "revision": "154c4716c113b1edc06a",
-    "url": "/paths-to-glory/static/js/2.ffdcffda.chunk.js"
+    "revision": "24558b712563bfc68558",
+    "url": "/paths-to-glory/static/js/2.c71daae6.chunk.js"
   },
   {
-    "revision": "89b0379e7bcda1a468d8b0343aeb4e53",
-    "url": "/paths-to-glory/static/js/2.ffdcffda.chunk.js.LICENSE.txt"
+    "revision": "0bf38cf6c0b51ec69d7a52e8875a6dbf",
+    "url": "/paths-to-glory/static/js/2.c71daae6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b60e8dc16bd4963ad163",
-    "url": "/paths-to-glory/static/js/main.2c249fac.chunk.js"
+    "revision": "d1f258fe1280c28a0f08",
+    "url": "/paths-to-glory/static/js/main.6e180717.chunk.js"
   },
   {
     "revision": "3fde74d9e272454d9ed9",
